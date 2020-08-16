@@ -875,4 +875,9 @@ Erfolge"</string>
     <string name="at_conscription_and_street_number">"Konskriptionsnummer %1$s, Orientierungsnummer %2$s:"</string>
     <string name="at_conscription_number">"Konskriptionsnummer %s:"</string>
     <string name="at_housenumber">"Hausnummer %s:"</string>
+
+    <string name="quest_lanes_title">"Wie viele Spuren hat %s?"</string>
+    <string name="quest_lanes_no_markings">"Es gibt keine Fahrstreifenmarkierungen"</string>
+    <string name="quest_lanes_no_markings_title">"Gibt es wirklich keine Fahrstreifenmarkiereungen?"</string>
+    <string name="quest_lanes_yes_no_markings">"Ja, keine Markierungen"</string>
 </resources>

@@ -34,6 +34,7 @@ import de.westnordost.streetcomplete.quests.foot.AddProhibitedForPedestrians
 import de.westnordost.streetcomplete.quests.general_fee.AddGeneralFee
 import de.westnordost.streetcomplete.quests.handrail.AddHandrail
 import de.westnordost.streetcomplete.quests.internet_access.AddInternetAccess
+import de.westnordost.streetcomplete.quests.lanes.AddLanes
 import de.westnordost.streetcomplete.quests.leaf_detail.AddForestLeafType
 import de.westnordost.streetcomplete.quests.localized_name.AddBusStopName
 import de.westnordost.streetcomplete.quests.localized_name.AddRoadName
@@ -97,6 +98,7 @@ object QuestModule
 
         // ↓ 2. important data that is used by many data consumers
         AddRoadName(o, roadNameSuggestionsDao),
+        AddLanes(o, featureDictionaryFuture),
         AddPlaceName(o, featureDictionaryFuture),
         AddOneway(o, trafficFlowSegmentsApi, trafficFlowDao),
         AddBusStopName(o),
