@@ -32,16 +32,25 @@ class AddBinStatusOnBusStop : OsmFilterQuestType<Boolean>() {
     override fun getTitle(tags: Map<String, String>): Int {
         val hasName = tags.containsAnyKey("name", "ref")
         val isTram = tags["tram"] == "yes"
+        val addRef = additionalShowRef(tags)
+        val hasRef =
+            addRef != ""
+            && tags["name"] != ""
+            && !(tags["name"]?.endsWith(addRef))!!
+            && !(tags["name"]?.startsWith(addRef))!!
+            && !(tags["name"]?.endsWith(tags["ref"]!!.takeLast(2)))!! // Relevant in PL only
         return when {
-            isTram && hasName ->    R.string.quest_busStopBin_tram_name_title
-            isTram ->               R.string.quest_busStopBin_tram_title
-            hasName ->              R.string.quest_busStopBin_name_title
-            else ->                 R.string.quest_busStopBin_title
+            isTram && hasName && hasRef -> R.string.quest_busStopBin_tram_name_ref_title
+            isTram && hasName ->           R.string.quest_busStopBin_tram_name_title
+            isTram ->                      R.string.quest_busStopBin_tram_title
+            hasName && hasRef ->           R.string.quest_busStopBin_name_ref_title
+            hasName ->                     R.string.quest_busStopBin_name_title
+            else ->                        R.string.quest_busStopBin_title
         }
     }
 
     override fun getTitleArgs(tags: Map<String, String>, featureName: Lazy<String?>): Array<String> =
-        arrayOfNotNull(tags["name"] ?: tags["ref"])
+        arrayOfNotNull(tags["name"] ?: tags["ref"], additionalShowRef(tags))
 
     override fun createForm() = YesNoQuestAnswerFragment()
 

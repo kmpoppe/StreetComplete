@@ -540,9 +540,11 @@ Otherwise, you can download another keyboard in the app store. Popular keyboards
     <string name="quest_busStopBench_tram_title">"Is there a bench at this streetcar stop?"</string>
     <string name="quest_busStopBench_title">"Is there a bench at this bus stop?"</string>
     <string name="quest_busStopBench_name_title">"Is there a bench at the bus stop %s?"</string>
+    <string name="quest_busStopBin_tram_name_ref_title">"Is there a waste basket at the streetcar stop %s (%s)?"</string>
     <string name="quest_busStopBin_tram_name_title">"Is there a waste basket at the streetcar stop %s?"</string>
     <string name="quest_busStopBin_tram_title">"Is there a waste basket at this streetcar stop?"</string>
     <string name="quest_busStopBin_title">"Is there a waste basket at this bus stop?"</string>
+    <string name="quest_busStopBin_name_ref_title">"Is there a waste basket at the bus stop %s (%s)?"</string>
     <string name="quest_busStopBin_name_title">"Is there a waste basket at the bus stop %s?"</string>
     <string name="quest_busStopLit_tram_name_title">"Is the streetcar stop %s lit?"</string>
     <string name="quest_busStopLit_tram_title">"Is this streetcar stop lit?"</string>

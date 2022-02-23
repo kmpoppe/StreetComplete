@@ -16,4 +16,16 @@ abstract class OsmFilterQuestType<T> : OsmElementQuestType<T> {
         mapData.filter(elementFilter).asIterable()
 
     override fun isApplicableTo(element: Element) = filter.matches(element)
+
+    fun additionalShowRef(tags: Map<String, String>): String {
+        return when {
+            tags["local_ref"] != null -> tags["local_ref"]
+            tags["loc_ref"]   != null -> tags["loc_ref"]
+            tags["reg_ref"]   != null -> tags["reg_ref"]
+            tags["nat_ref"]   != null -> tags["nat_ref"]
+            tags["int_ref"]   != null -> tags["int_ref"]
+            tags["ref"]       != null -> tags["ref"]
+            else -> ""
+        } ?: ""
+    }
 }
