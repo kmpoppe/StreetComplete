@@ -183,14 +183,11 @@ open class GenerateQuestListTask : DefaultTask() {
         }
 
         val csvLines = listOf(
-            "\"Quest Name\", \"Question\", \"Package name\", \"Default Priority\", \"Wiki Order\", \"SVG Icon URL\"",
-            ",,,,,"
+            "\"Quest Name\", \"Question\", \"Package name\", \"Default Priority\", \"Wiki Order\", \"SVG Icon URL\", \"Map Type\""
         ) +
             outdatedWikiQuests.map { it.csvString } +
-            listOf(",,,,,") +
-            updatedRepoQuests.map { it.getCsvString(projectDirectory) } +
-            listOf(",,,,,") +
-            existingRepoQuests.map { it.getCsvString(projectDirectory) }
+            updatedRepoQuests.map { it.getCsvString(projectDirectory, "updated") } +
+            existingRepoQuests.map { it.getCsvString(projectDirectory, "existing") }
 
         File(targetFile).writeText(csvLines.joinToString("\n"))
     }
@@ -208,12 +205,12 @@ private data class RepoQuest(
         if (name == noteQuestName) noteQuestPackageName
         else file.parentFile.name
 
-    fun getCsvString(projectDirectory: File): String {
+    fun getCsvString(projectDirectory: File, mapType: String): String {
         val iconsPath = icon.toRelativeString(projectDirectory).replace(" ", "%20")
         val iconUrl = "https://raw.githubusercontent.com/streetcomplete/StreetComplete/master/$iconsPath"
 
         val wikiOrder = if (wikiOrder == -1) "\"???\"" else wikiOrder + 1
-        return "\"$name\", \"$title\", \"$packageName\", ${defaultPriority + 1}, $wikiOrder, \"$iconUrl\""
+        return "\"$name\", \"$title\", \"$packageName\", ${defaultPriority + 1}, $wikiOrder, \"$iconUrl\", \"$mapType\""
     }
 }
 
@@ -284,7 +281,7 @@ private class WikiQuest(rowCells: List<String>, rowIndex: Int) {
         }.size != 1
 
     val csvString: String get() =
-        "\"???\", \"$question\", \"${packageName ?: "–"}\", \"???\", ${wikiOrder + 1}, \"???\""
+        "\"???\", \"$question\", \"${packageName ?: "–"}\", \"???\", ${wikiOrder + 1}, \"???\", \"???\""
 }
 
 @Serializable
